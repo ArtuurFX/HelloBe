@@ -1,9 +1,13 @@
 package br.com.fiap.jpa.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,6 +23,10 @@ public class AnswerUser {
 	@Column(name="answer_user", length=100, nullable=false)
 	private String answerUser;
 
+	//bidirecional	
+	@OneToMany(mappedBy="answerUser", cascade=CascadeType.ALL)
+	private List<User> users;
+	
 	public AnswerUser() {
 		super();
 	}

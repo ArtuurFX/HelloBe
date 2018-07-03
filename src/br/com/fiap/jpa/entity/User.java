@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -36,6 +39,21 @@ public class User {
 
 	@Column(nullable=false)
 	private int token;
+	
+	@Id
+	@ManyToOne
+	@JoinColumn(name="id_answer_user")
+	private AnswerUser answerUser;
+	
+	@OneToOne
+	@JoinColumn(name="id_biotype", nullable=false)
+	private Biotype biotypeId;
+	
+	
+	//bidirecional
+	@OneToOne(mappedBy="user")
+	private Biotype biotype;
+	
 
 	public User() {
 		super();

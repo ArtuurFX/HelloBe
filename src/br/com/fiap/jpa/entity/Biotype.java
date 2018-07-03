@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,9 +18,16 @@ public class Biotype {
 	@Column(name="id_biotype", nullable=false)
 	private int id;
 	
-	@Column(nullable=false)
+	@Column(length=100, nullable=false)
 	private String description;
 	
+	@OneToOne
+	@JoinColumn(name="id_answer_user", nullable=false)
+	private User answerUser;
+	
+	@OneToOne
+	@JoinColumn(name="id_user", nullable=false)
+	private User user;
 	
 	public Biotype() {
 		super();
